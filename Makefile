@@ -1,3 +1,3 @@
 run:
-	docker build --no-cache -t jmsanchez/jenkins-ci .
+	docker build --no-cache -t jmsanchez/build-ci .
 

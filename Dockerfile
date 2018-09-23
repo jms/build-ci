@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     locales \
     python-dev \
+    python3-dev \
+    python-tox \
     libssl-dev \
     libffi-dev \
     libpq-dev \

@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libgif-dev \
     nasm \
     dh-autoreconf \
-    python-imaging \
     libssl-dev \
     libffi-dev \
     libpq-dev \

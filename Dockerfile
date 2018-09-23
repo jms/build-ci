@@ -3,10 +3,23 @@ FROM ubuntu:bionic
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     locales \
-    curl \
+    pngquant \
+    ibtiff5-dev \
+    libjpeg8-dev \
+    libgeos-dev \
+    libpq-dev \
     python-dev \
     python3-dev \
     python-tox \
+    liblcms2-dev \
+    libwebp-dev \
+    tcl8.5-dev \
+    tk8.5-dev \
+    libcairo2-dev \
+    libgif-dev \
+    nasm \
+    dh-autoreconf \
+    python-imaging \
     libssl-dev \
     libffi-dev \
     libpq-dev \

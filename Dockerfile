@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     locales \
     pngquant \
-    ibtiff5-dev \
+    libtiff5-dev \
     libjpeg8-dev \
     libgeos-dev \
     libpq-dev \

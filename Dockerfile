@@ -3,6 +3,7 @@ FROM ubuntu:bionic
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     locales \
+    curl \
     python-dev \
     python3-dev \
     python-tox \
@@ -18,10 +19,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     chromium-browser \
     git-lfs \
     nodejs \
+    gnupg2 \
+    curl \
+    wget \
+    ca-certificates \
     git && \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    wget "https://dl.yarnpkg.com/debian/pubkey.gpg" -O /root/yarn-pubkey.gpg && \
+    apt-key add /root/yarn-pubkey.gpg && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get install yarn && \
+    apt-get update && \
+    apt-get install --no-install-recommends -y yarn && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # setup locales 

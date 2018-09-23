@@ -1,5 +1,6 @@
 FROM ubuntu:bionic
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     locales \
@@ -39,8 +40,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     wget "https://dl.yarnpkg.com/debian/pubkey.gpg" -O /root/yarn-pubkey.gpg && \
     apt-key add /root/yarn-pubkey.gpg && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && \
-    apt-get install --no-install-recommends -y yarn && \
+    DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y yarn && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # setup locales 

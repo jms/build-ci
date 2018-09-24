@@ -1,14 +1,13 @@
 FROM ubuntu:bionic
 
 ARG DEBIAN_FRONTEND=noninteractive
+WORKDIR /code
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     locales \
     pngquant \
     libtiff5-dev \
     libjpeg8-dev \
-    libgeos-dev \
-    libpq-dev \
     python-dev \
     python3-dev \
     python-tox \
@@ -18,8 +17,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     tk8.5-dev \
     libcairo2-dev \
     libgif-dev \
-    nasm \
-    dh-autoreconf \
     libssl-dev \
     libffi-dev \
     libpq-dev \
@@ -50,3 +47,4 @@ ENV LANG en_US.utf8
 
 COPY profile.d/java.sh /etc/profile.d/
 
+VOLUME [ "/code" ]

@@ -1,6 +1,15 @@
 FROM ubuntu:bionic
 
 ARG DEBIAN_FRONTEND=noninteractive
+ARG user=jenkins
+ARG group=jenkins
+ARG uid=1000
+ARG gid=1000
+
+ENV JENKINS_HOME /home/jenkins
+
+RUN groupadd -g ${gid} ${group} && \
+    useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
@@ -48,4 +57,6 @@ ENV LANG en_US.utf8
 
 COPY profile.d/java.sh /etc/profile.d/
 
-VOLUME [ "/code" ]
+VOLUME [ "/home/jenkins" ]
+
+USER ${user}

@@ -7,7 +7,6 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
 
-# check if required
 ENV PG_MAJOR 10
 
 ENV JENKINS_HOME /home/jenkins

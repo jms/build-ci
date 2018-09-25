@@ -66,7 +66,11 @@ ENV LANG en_US.utf8
 
 COPY profile.d/java.sh /etc/profile.d/
 
-RUN mkdir /docker-entrypoint-initdb.d
+# for pip/yarn cache volumen
+RUN mkdir /home/jenkins/.cache
+
+# postgresql setup 
+RUN mkdir /docker-entrypoint-initdb.d 
 
 RUN set -ex; \
     sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf;
@@ -85,7 +89,7 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-VOLUME [ "/home/jenkins", "/var/lib/postgresql/data" ]
+VOLUME [ "/home/jenkins", "/var/lib/postgresql/data", "/home/jenkins/.cache" ]
 
 EXPOSE 5432
 

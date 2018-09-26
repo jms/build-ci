@@ -71,6 +71,7 @@ RUN mkdir /home/jenkins/.cache
 
 # postgresql setup 
 RUN mkdir /docker-entrypoint-initdb.d 
+COPY docker-entrypoint-initdb.d/init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh
 
 RUN set -ex; \
     sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf;

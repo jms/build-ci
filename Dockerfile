@@ -67,7 +67,7 @@ ENV LANG en_US.utf8
 COPY profile.d/java.sh /etc/profile.d/
 
 # for pip/yarn cache volumen
-RUN mkdir /home/jenkins/.cache
+# RUN mkdir /home/jenkins/.cache
 
 # postgresql setup 
 RUN mkdir /docker-entrypoint-initdb.d 
@@ -90,10 +90,10 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-VOLUME [ "/home/jenkins", "/var/lib/postgresql/data", "/home/jenkins/.cache" ]
+VOLUME [ "/home/jenkins", "/var/lib/postgresql/data" ]
 
 EXPOSE 5432
 
 CMD ["postgres"]
 
-USER ${user}
+# USER ${user}

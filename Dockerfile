@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     postgresql-10 \
     postgresql-common \
     libnss-wrapper \
+    gosu \
     postgis \
     bzip2 \
     unzip \
@@ -67,7 +68,7 @@ ENV LANG en_US.utf8
 COPY profile.d/java.sh /etc/profile.d/
 
 # for pip/yarn cache volumen
-# RUN mkdir /home/jenkins/.cache
+RUN mkdir /home/jenkins/.cache
 
 # postgresql setup 
 RUN mkdir /docker-entrypoint-initdb.d 
@@ -90,7 +91,7 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-VOLUME [ "/home/jenkins", "/var/lib/postgresql/data" ]
+VOLUME [ "/home/jenkins", "/var/lib/postgresql/data", "/home/jenkins/.cache" ]
 
 EXPOSE 5432
 

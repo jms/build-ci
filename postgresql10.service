@@ -1,0 +1,11 @@
+[Unit]
+Description=Container Postgresql Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/docker-entrypoint.sh postgres
+ExecStop=kill -15 $(pgrep docker-entrypoint.sh)
+Type=simple
+
+[Install]
+WantedBy=default.target

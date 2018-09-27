@@ -2,6 +2,5 @@ run:
 	docker build --no-cache -t jmsanchez/build-ci .
 
 shell:
-	docker run -it jmsanchez/build-ci bash -l
-
+	docker run -i -t --rm=true jmsanchez/build-ci bash -l
 

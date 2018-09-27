@@ -1,9 +1,6 @@
 # vim:set ft=dockerfile:
-FROM phusion/baseimage:0.11
+FROM ubuntu:bionic
 
-CMD ["/sbin/my_init"]
-
-# ARG DEBIAN_FRONTEND=noninteractive
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
@@ -92,15 +89,12 @@ COPY docker-entrypoint.sh /usr/local/bin/
 
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
 
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 VOLUME [ "/home/jenkins", "/var/lib/postgresql/data", "/home/jenkins/.cache" ]
 
 EXPOSE 5432
 
-# ENTRYPOINT ["docker-entrypoint.sh"]
-# CMD ["postgres"]
+CMD ["postgres"]
 
-RUN mkdir /etc/service/postgresql10
-COPY postgres.sh /etc/service/postgresql10/run
-RUN chmod +x /etc/service/postgresql10/run
-
-# USER ${user}
+USER ${user}

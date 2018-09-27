@@ -3,3 +3,5 @@ run:
 
 shell:
 	docker run -it jmsanchez/build-ci bash -l
+
+

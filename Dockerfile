@@ -103,4 +103,4 @@ RUN mkdir /etc/service/postgresql10
 COPY postgres.sh /etc/service/postgresql10/run
 RUN chmod +x /etc/service/postgresql10/run
 
-USER ${user}
+# USER ${user}

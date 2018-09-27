@@ -1,7 +1,9 @@
 # vim:set ft=dockerfile:
-FROM ubuntu:bionic
+FROM phusion/baseimage:0.11
 
-ARG DEBIAN_FRONTEND=noninteractive
+CMD ["/sbin/my_init"]
+
+# ARG DEBIAN_FRONTEND=noninteractive
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
@@ -16,7 +18,8 @@ ENV PGDATA /var/lib/postgresql/data
 RUN groupadd -g ${gid} ${group} && \
     useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     build-essential \
     locales \
     pngquant \
@@ -89,12 +92,15 @@ COPY docker-entrypoint.sh /usr/local/bin/
 
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-
 VOLUME [ "/home/jenkins", "/var/lib/postgresql/data", "/home/jenkins/.cache" ]
 
 EXPOSE 5432
 
-CMD ["postgres"]
+# ENTRYPOINT ["docker-entrypoint.sh"]
+# CMD ["postgres"]
 
-# USER ${user}
+RUN mkdir /etc/service/postgresql10
+COPY postgres.sh /etc/service/postgresql10/run
+RUN chmod +x /etc/service/postgresql10/run
+
+USER ${user}

@@ -25,7 +25,7 @@ env variables:
 - POSTGRES_DB
 - POSTGRES_INITDB_ARGS
 - POSTGRES_INITDB_WALDIR
-
+- POSTGRES_PASSWORD_FILE
 
 ```bash
 docker run --name some-postgres -it jmsanchez/build-ci -e POSTGRES_PASSWORD=mysecretpassword -d postgres

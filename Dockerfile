@@ -6,11 +6,7 @@ ARG group=jenkins
 ARG uid=1000
 ARG gid=1000
 
-ENV PG_MAJOR 10
-
 ENV JENKINS_HOME /home/jenkins
-ENV PATH $PATH:/usr/lib/postgresql/$PG_MAJOR/bin
-ENV PGDATA /var/lib/postgresql/data
 
 RUN groupadd -g ${gid} ${group} && \
     useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
@@ -35,11 +31,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libffi-dev \
     libpq-dev \
     postgresql-client-10\
-    postgresql-10 \
-    postgresql-common \
-    libnss-wrapper \
-    gosu \
-    postgis \
     bzip2 \
     unzip \
     xz-utils \
@@ -67,34 +58,6 @@ ENV LANG en_US.utf8
 
 COPY profile.d/java.sh /etc/profile.d/
 
-# for pip/yarn cache volumen
-RUN mkdir /home/jenkins/.cache
-
-# postgresql setup 
-RUN mkdir /docker-entrypoint-initdb.d 
-COPY docker-entrypoint-initdb.d/init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh
-
-RUN set -ex; \
-    sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf;
-
-RUN mv -v "/usr/share/postgresql/$PG_MAJOR/postgresql.conf.sample" /usr/share/postgresql/ \
-	&& ln -sv ../postgresql.conf.sample "/usr/share/postgresql/$PG_MAJOR/" \
-	&& sed -ri "s!^#?(listen_addresses)\s*=\s*\S+.*!\1 = '*'!" /usr/share/postgresql/postgresql.conf.sample
-
-RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
-
-RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA" # this 777 will be replaced by 700 at runtime (allows semi-arbitrary "--user" values)
-
-COPY docker-entrypoint.sh /usr/local/bin/
-
-RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
-
-ENTRYPOINT ["docker-entrypoint.sh"]
-
-VOLUME [ "/home/jenkins", "/var/lib/postgresql/data", "/home/jenkins/.cache" ]
-
-EXPOSE 5432
-
-CMD ["postgres"]
+VOLUME [ "/home/jenkins" ]
 
 USER ${user}

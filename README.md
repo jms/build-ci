@@ -13,20 +13,3 @@ chrome.json:
 
 Thanks to Jessie Frazelle seccomp profile for Chrome.
 
-
-for postgresql it use the same params like the official image. 
-
-reference: https://hub.docker.com/_/postgres/
-
-env variables: 
-- POSTGRES_PASSWORD
-- POSTGRES_USER
-- PGDATA
-- POSTGRES_DB
-- POSTGRES_INITDB_ARGS
-- POSTGRES_INITDB_WALDIR
-- POSTGRES_PASSWORD_FILE
-
-```bash
-docker run --name some-postgres -it jmsanchez/build-ci -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-```

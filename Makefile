@@ -3,4 +3,3 @@ run:
 
 shell:
 	docker run -i -t --rm=true jmsanchez/build-ci bash -l
-

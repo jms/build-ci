@@ -29,6 +29,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libgif-dev \
     libssl-dev \
     libffi-dev \
+    libgeos-dev \
+    libgeos-c1v5 \
     libpq-dev \
     postgresql-client-10\
     bzip2 \

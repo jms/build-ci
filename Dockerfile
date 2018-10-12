@@ -14,6 +14,10 @@ RUN groupadd -g ${gid} ${group} && \
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     build-essential \
+    autoconf \
+    libtool \
+    pkg-config \
+    nasm \
     locales \
     pngquant \
     libtiff5-dev \

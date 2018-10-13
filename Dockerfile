@@ -22,6 +22,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     pngquant \
     libtiff5-dev \
     libjpeg8-dev \
+    libpng-dev \
+    libpng16-16 \
     python-dev \
     python3-dev \
     python-tox \

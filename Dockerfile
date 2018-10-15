@@ -47,6 +47,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     chromium-browser \
     git-lfs \
     nodejs \
+    gnupg2 \
+    curl \
+    wget \
+    ca-certificates \
+    git && \
+    wget "https://dl.yarnpkg.com/debian/pubkey.gpg" -O /root/yarn-pubkey.gpg && \
+    apt-key add /root/yarn-pubkey.gpg && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y yarn; \
+    DEBIAN_FRONTEND=noninteractive apt install -y \
     gyp \
     javascript-common \
     libjs-async \
@@ -117,17 +128,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     node-yallist \
     nodejs-dev \
     npm \
-    python-pkg-resources \
-    gnupg2 \
-    curl \
-    wget \
-    ca-certificates \
-    git && \
-    wget "https://dl.yarnpkg.com/debian/pubkey.gpg" -O /root/yarn-pubkey.gpg && \
-    apt-key add /root/yarn-pubkey.gpg && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    DEBIAN_FRONTEND=noninteractive apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y yarn; \
+    python-pkg-resources; \
     apt-get purge -y --auto-remove; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 

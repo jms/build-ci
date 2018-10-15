@@ -47,6 +47,77 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     chromium-browser \
     git-lfs \
     nodejs \
+    gyp \
+    javascript-common \
+    libjs-async \
+    libjs-inherits \
+    libjs-node-uuid \
+    libssl1.0-dev \
+    libuv1-dev \
+    node-abbrev \
+    node-ansi \
+    node-ansi-color-table \
+    node-archy \
+    node-async \
+    node-balanced-match \
+    node-block-stream \
+    node-brace-expansion \
+    node-builtin-modules \
+    node-combined-stream \
+    node-concat-map \
+    node-cookie-jar \
+    node-delayed-stream \
+    node-forever-agent \
+    node-form-data \
+    node-fs.realpath \
+    node-fstream \
+    node-fstream-ignore \
+    node-github-url-from-git \
+    node-glob node-graceful-fs \
+    node-gyp \
+    node-hosted-git-info \
+    node-inflight \
+    node-inherits \
+    node-ini \
+    node-is-builtin-module \
+    node-isexe \
+    node-json-stringify-safe \
+    node-lockfile \
+    node-lru-cache \
+    node-mime \
+    node-minimatch \
+    node-mkdirp \
+    node-mute-stream \
+    node-node-uuid \
+    node-nopt \
+    node-normalize-package-data \
+    node-npmlog \
+    node-once \
+    node-osenv \
+    node-path-is-absolute \
+    node-pseudomap \
+    node-qs \
+    node-read \
+    node-read-package-json \
+    node-request \
+    node-retry \
+    node-rimraf \
+    node-semver \
+    node-sha \
+    node-slide \
+    node-spdx-correct \
+    node-spdx-expression-parse \
+    node-spdx-license-ids \
+    node-tar \
+    node-tunnel-agent \
+    node-underscore \
+    node-validate-npm-package-license \
+    node-which \
+    node-wrappy \
+    node-yallist \
+    nodejs-dev \
+    npm \
+    python-pkg-resources \
     gnupg2 \
     curl \
     wget \

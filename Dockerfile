@@ -150,5 +150,8 @@ RUN mkdir /home/jenkins/.cache && chown ${user}:${group} /home/jenkins/.cache
 
 VOLUME [ "/home/jenkins", "/home/jenkins/.cache"]
 
+EXPOSE 5000
+EXPOSE 2992
+
 USER ${user}
 
